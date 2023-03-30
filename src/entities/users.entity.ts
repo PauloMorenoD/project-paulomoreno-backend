@@ -2,8 +2,6 @@ import { getRounds, hashSync } from "bcryptjs";
 import { BeforeInsert, BeforeUpdate, Column, Entity, JoinColumn,  OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import Departments from "./departments.entity";
 
-
-
 @Entity("users")
 
 class Users{
@@ -25,10 +23,10 @@ class Users{
     @Column()
     kind_of_work: string
 
-    @Column()
+    @Column({ default: false })
     is_admin: boolean
 
-    @OneToOne(() => Departments)
+    @OneToOne(() => Departments, { nullable:true })
     @JoinColumn()
     department: Departments
 
