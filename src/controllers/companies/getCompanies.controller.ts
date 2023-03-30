@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import getAllCompaniesService from '../../services/companies/getAllCompanies.services'
 
+
 const getCompaniesController = async (req: Request, res: Response): Promise<Response> => {
     const companies = await getAllCompaniesService()
 

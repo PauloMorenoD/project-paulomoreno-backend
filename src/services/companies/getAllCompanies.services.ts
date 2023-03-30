@@ -7,7 +7,11 @@ import { iReturnedCompanies } from '../../interfaces/companies.interfaces'
 const getAllCompaniesService = async (): Promise<iReturnedCompanies[]> => {
     const companieRepo: Repository<Companies> = AppDataSource.getRepository(Companies)
 
-    const allCompanies: iReturnedCompanies[] = await companieRepo.find()
+    const allCompanies: iReturnedCompanies[] = await companieRepo.find({
+        relations:{
+            sector: true
+        }
+    })
 
     return allCompanies
 }
