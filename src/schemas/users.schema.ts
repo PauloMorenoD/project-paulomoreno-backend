@@ -18,12 +18,15 @@ const returnedUserCreated = z.object({
     email: z.string().email(),
     professional_level: z.string(),
     kind_of_work: z.string(),
-    department: createDepartmentSchema.nullable(),
+    department: createDepartmentSchema.nullable().default(null),
     is_admin: z.boolean().optional()
 })
+
+const editUserSchema = createUserBody.partial()
 
 export {
     createUserBody,
     returnedUserCreated,
     createUserWithAdmin,
+    editUserSchema
 }

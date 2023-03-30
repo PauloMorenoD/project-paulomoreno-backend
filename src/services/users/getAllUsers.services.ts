@@ -5,15 +5,15 @@ import { Users } from '../../entities'
 import { iReturnedUser } from '../../interfaces/users.interfaces'
 import { returnedUserCreated } from '../../schemas/users.schema'
 
-const getALlUsersService = async ()/* : Promise<iReturnedUser[]> */ => {
+const getALlUsersService = async (): Promise<iReturnedUser[]> => {
     
     const userRepo: Repository<Users> = AppDataSource.getRepository(Users)
 
     const allUsers: Users[] = await userRepo.find() 
 
-    /* const usersParsed: iReturnedUser[] = returnedUserCreated.array().parse(allUsers) */
+    const usersParsed: iReturnedUser[] = returnedUserCreated.array().parse(allUsers)
 
-    return allUsers
+    return usersParsed
 }
 
 export default getALlUsersService
