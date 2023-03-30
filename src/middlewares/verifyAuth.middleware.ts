@@ -5,7 +5,7 @@ import { AppError } from "../errors";
 const auth = async(req: Request, _res: Response, next: NextFunction): Promise<Response | void>=>{
     const bearer = req.headers.authorization
 
-    if(!bearer) throw new AppError("Missing beare token", 401)
+    if(!bearer) throw new AppError("Missing bearer token", 401)
 
     const token = bearer.split(" ")[1]
 
