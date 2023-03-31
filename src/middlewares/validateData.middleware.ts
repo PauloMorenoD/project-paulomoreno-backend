@@ -5,7 +5,7 @@ const verifyDataIsValid = ( schema: ZodTypeAny) => async (req: Request, _res: Re
     const validatedData = schema.parse(req.body)
 
     req.body = validatedData
-
+    console.log("po")
     return next()
 }
 

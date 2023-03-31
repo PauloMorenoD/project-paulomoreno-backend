@@ -4,33 +4,27 @@ import { Departments, Users } from "../../entities"
 import { AppError } from "../../errors"
 import { iHiredWorkerCreate } from "../../interfaces/departments.interfaces"
 
-interface iUserIds {
-    user_id : number,
-    department_id : number,
-}
+const hireWorkerService = async (data: iHiredWorkerCreate) => {
 
-const hireWorkerService = async ({user_id, department_id}:iUserIds ) => {
+    console.log("po")
 
     const userRepo: Repository<Users> = AppDataSource.getRepository(Users) 
     const departmentRepo: Repository<Departments> = AppDataSource.getRepository(Departments) 
 
 
-    const departments : Departments | null = await departmentRepo.findOneBy({ id: department_id })
+    const departments : Departments | null = await departmentRepo.findOneBy({ id:data.department_id })
     
     if(!departments) throw new AppError("Department not found", 404)
 
-    const oldUserData : Users | null = await userRepo.findOne({ 
-        where:{
-            id: user_id
-        }
-    })
+    const oldUserData : Users | null = await userRepo.findOneBy({ id: data.user_id })
 
+    console.log(oldUserData)
     
     if(!oldUserData) throw new AppError("User not found", 404)
 
     const userHired = {
         ...oldUserData,
-        departmentId: departments
+        department: departments
     }
 
 

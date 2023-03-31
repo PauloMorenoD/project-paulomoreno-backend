@@ -13,6 +13,5 @@ const departmentsRoutes: Router = Router()
 departmentsRoutes.get("", auth, verifyUserIsAdmin, getAllDepartmentsController)
 departmentsRoutes.get("/:id", auth, verifyUserIsAdmin, listAllDepartmentsFromCompanyController)
 departmentsRoutes.post("", auth, verifyUserIsAdmin, verifyDataIsValid(createDepartmentSchema), createDepartmentController)
-departmentsRoutes.patch("/hire", auth, verifyUserIsAdmin, verifyDataIsValid(hireWorkerSchema), hireWorkerController)
 
 export default departmentsRoutes
