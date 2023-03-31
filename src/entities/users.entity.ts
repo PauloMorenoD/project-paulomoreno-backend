@@ -28,7 +28,7 @@ class Users{
 
     @OneToOne(() => Departments, { nullable:true })
     @JoinColumn()
-    department: Departments
+    department: Departments 
 
     @BeforeInsert()
     @BeforeUpdate()
