@@ -18,7 +18,7 @@ const returnedUserCreated = z.object({
     email: z.string().email(),
     professional_level: z.string(),
     kind_of_work: z.string(),
-    department: createDepartmentSchema.nullable().default(null),
+    department: createDepartmentSchema.nullable(),
     is_admin: z.boolean().optional()
 })
 

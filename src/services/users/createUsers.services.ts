@@ -1,19 +1,18 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../data-source"
 import { Users } from "../../entities"
-import { iCreateUserBody, iReturnedUser } from "../../interfaces/users.interfaces"
-import { returnedUserCreated } from "../../schemas/users.schema"
+import { iCreateUserBody } from "../../interfaces/users.interfaces"
 
-const createUseService = async (data: iCreateUserBody): Promise<iReturnedUser> => {
+const createUseService = async (data: iCreateUserBody)=> {
     const userRepo: Repository<Users> = AppDataSource.getRepository(Users)
 
     const user = userRepo.create(data)
 
     await userRepo.save(user)
 
-    const userParsed : iReturnedUser  = returnedUserCreated.parse(user)
+    delete user.password
 
-    return userParsed
+    return user
 }
 
 export default createUseService
