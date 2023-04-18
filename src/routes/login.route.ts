@@ -3,6 +3,9 @@ import loginController from "../controllers/login/login.controller"
 
 const loginRoutes: Router = Router()
 
-loginRoutes.use("", loginController)
+function test(){
+    console.log("chegou aqui")
+}
+loginRoutes.post("", loginController)
 
 export default loginRoutes

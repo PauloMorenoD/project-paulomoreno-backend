@@ -17,9 +17,9 @@ const editUserService = async (id: number, data: iUserEdit) => {
 
     await userRepo.save(newUserData)
 
-    const userParsed: iReturnedUser = returnedUserCreated.parse(newUserData)
-
-    return userParsed
+    delete newUserData.password
+    
+    return newUserData
 }
 
 export default editUserService

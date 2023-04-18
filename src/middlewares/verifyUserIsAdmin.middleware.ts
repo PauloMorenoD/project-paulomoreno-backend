@@ -3,7 +3,7 @@ import { AppError } from '../errors'
 
 const verifyUserIsAdmin = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     if(req.user.admin ===false) throw new AppError("Insufficient permission", 403)
-    console.log("oi")
+
     return next()
 }
 

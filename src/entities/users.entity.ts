@@ -15,7 +15,7 @@ class Users{
     email: string
 
     @Column()
-    password: string
+    password?: string
 
     @Column()
     professional_level: string
@@ -28,13 +28,13 @@ class Users{
 
     @OneToOne(() => Departments, { nullable:true })
     @JoinColumn()
-    department: Departments 
+    department: Departments | null
 
     @BeforeInsert()
     @BeforeUpdate()
     hashPass(){
-        const encriptedPass = getRounds(this.password)
-        if (!encriptedPass) this.password = hashSync(this.password, 10)
+        const encriptedPass = getRounds(this.password!)
+        if (!encriptedPass) this.password = hashSync(this.password!, 10)
     }
 }
 
