@@ -2,8 +2,6 @@ import { getRounds, hashSync } from "bcryptjs";
 import { BeforeInsert, BeforeUpdate, Column, Entity, JoinColumn,  OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import Departments from "./departments.entity";
 
-
-
 @Entity("users")
 
 class Users{
@@ -17,7 +15,7 @@ class Users{
     email: string
 
     @Column()
-    password: string
+    password?: string
 
     @Column()
     professional_level: string
@@ -25,18 +23,18 @@ class Users{
     @Column()
     kind_of_work: string
 
-    @Column()
+    @Column({ default: false })
     is_admin: boolean
 
-    @OneToOne(() => Departments)
+    @OneToOne(() => Departments, { nullable:true })
     @JoinColumn()
-    department: Departments
+    department: Departments | null
 
     @BeforeInsert()
     @BeforeUpdate()
     hashPass(){
-        const encriptedPass = getRounds(this.password)
-        if (!encriptedPass) this.password = hashSync(this.password, 10)
+        const encriptedPass = getRounds(this.password!)
+        if (!encriptedPass) this.password = hashSync(this.password!, 10)
     }
 }
 
