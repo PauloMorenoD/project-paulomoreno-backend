@@ -10,9 +10,7 @@ const cors = require('cors');
 const app: Application = express();
 
 app.use(express.json())
-app.use(cors({
-    origin: 'https://api-empresas.onrender.com'
-}));
+app.use(cors());
 
 app.use("/sectors", sectorRoutes)
 app.use("/users", userRoutes)
