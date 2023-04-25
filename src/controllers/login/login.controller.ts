@@ -5,7 +5,7 @@ const loginController = async (req: Request, res: Response): Promise<Response> =
 
     const token = await loginService(req.body)
 
-    return res.status(200).json({ token })
+    return res.status(200).json({ token, admin:req.user.admin })
 }
 
 export default loginController
