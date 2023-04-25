@@ -9,6 +9,6 @@ import { createCompanySchema } from "../schemas/companies.schemas";
 const companieRoutes: Router = Router()
 
 companieRoutes.get("", getCompaniesController)
-companieRoutes.post("", auth, verifyUserIsAdmin, verifyDataIsValid(createCompanySchema), createCompaniesController)
+companieRoutes.post("", verifyDataIsValid(createCompanySchema), createCompaniesController)
 
 export default companieRoutes
