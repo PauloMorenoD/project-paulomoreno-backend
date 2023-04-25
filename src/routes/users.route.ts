@@ -12,7 +12,7 @@ import verifyUserIsAdmin from "../middlewares/verifyUserIsAdmin.middleware"
 
 const userRoutes: Router = Router()
 
-userRoutes.post("", verifyEmailExistsMiddleware, createUserController)
+userRoutes.post("", verifyDataIsValid(createUserBody), verifyEmailExistsMiddleware, createUserController)
 userRoutes.get("", auth, verifyUserIsAdmin, getAllUserController)
 userRoutes.patch("/:id",auth, verifyDataIsValid(editUserSchema), verifyUserExists, verifyEmailExistsMiddleware, editUserController)
 userRoutes.delete("/:id", auth, verifyUserExists, deleteUserController)
