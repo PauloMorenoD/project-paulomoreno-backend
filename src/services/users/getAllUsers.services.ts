@@ -10,7 +10,9 @@ const getALlUsersService = async ():Promise<Users[]> => {
 
     const allUsers:Users[] = await userRepo.find({
         relations:{
-            department: true
+            department: {
+                company:true
+            }
         }
     }) 
 
