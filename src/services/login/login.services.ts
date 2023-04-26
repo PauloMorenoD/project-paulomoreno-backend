@@ -7,7 +7,7 @@ import { Users } from '../../entities'
 import { AppError } from '../../errors'
 import iLogin from '../../interfaces/login.interfaces'
 
-const loginService = async (data:iLogin)/* : Promise<string> */ => {
+const loginService = async (data:iLogin) => {
     const userRepo: Repository<Users> = AppDataSource.getRepository(Users)
 
     const userLogin: Users | null = await userRepo.findOne({
