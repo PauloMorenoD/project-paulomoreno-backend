@@ -6,7 +6,9 @@ const dismissWorkerService = async (id: number): Promise<Response | void> => {
 
     const userRepo = AppDataSource.getRepository(Users)
 
-    const worker = await userRepo.findOneBy({ id })
+    const worker = await userRepo.findOne({where:{id}, relations:{
+        department:true
+    }})
 
     if (!worker) throw new AppError("user not found", 404)
 
