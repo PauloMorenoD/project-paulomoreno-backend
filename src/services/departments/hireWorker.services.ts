@@ -5,7 +5,7 @@ import { AppError } from "../../errors"
 import { iHiredWorkerCreate } from "../../interfaces/departments.interfaces"
 
 const hireWorkerService = async (data: iHiredWorkerCreate) => {
-
+    console.log("chegou aqui")
     const userRepo: Repository<Users> = AppDataSource.getRepository(Users) 
     const departmentRepo: Repository<Departments> = AppDataSource.getRepository(Departments) 
 
