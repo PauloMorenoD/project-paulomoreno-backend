@@ -7,7 +7,14 @@ const getAllLoggedService = async (id: number) => {
 
     const users: Repository<User> = AppDataSource.getRepository(User)
 
-    const loggedUser: User | null= await users.findOneBy({ id })
+    const loggedUser: User | null= await users.findOne({ 
+        where:{ id },
+        relations:{
+            department:{
+                company:true
+            }
+        }
+     })
 
     if(!loggedUser) throw new AppError("User not found", 404)
 

@@ -8,7 +8,6 @@ import auth from "../middlewares/verifyAuth.middleware"
 import verifyEmailExistsMiddleware from "../middlewares/verifyEmailExists.middleware"
 import verifyUserExists from "../middlewares/verifyUserExists.middleware"
 import { createUserBody, editUserSchema } from "../schemas/users.schema"
-import verifyUserIsAdmin from "../middlewares/verifyUserIsAdmin.middleware"
 import getLoggedController from "../controllers/users/getLoggedUser.controller"
 
 const userRoutes: Router = Router()
