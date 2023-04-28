@@ -9,6 +9,7 @@ import verifyEmailExistsMiddleware from "../middlewares/verifyEmailExists.middle
 import verifyUserExists from "../middlewares/verifyUserExists.middleware"
 import { createUserBody, editUserSchema } from "../schemas/users.schema"
 import verifyUserIsAdmin from "../middlewares/verifyUserIsAdmin.middleware"
+import getLoggedController from "../controllers/users/getLoggedUser.controller"
 
 const userRoutes: Router = Router()
 
@@ -16,5 +17,6 @@ userRoutes.post("", verifyDataIsValid(createUserBody), verifyEmailExistsMiddlewa
 userRoutes.get("", getAllUserController)
 userRoutes.patch("/:id",auth, verifyDataIsValid(editUserSchema), verifyUserExists, verifyEmailExistsMiddleware, editUserController)
 userRoutes.delete("/:id", auth, verifyUserExists, deleteUserController)
+userRoutes.get("/logged", auth, getLoggedController)
 
 export default userRoutes
